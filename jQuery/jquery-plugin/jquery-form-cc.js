@@ -1,8 +1,21 @@
 (function($){  
   'use strict';
+  //颜色转化函数
+  function rgb2Hex(rgbColor) {
+    const rgbArray = rgbColor.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(",")
+    let strHex = '#'
+    rgbArray.forEach(item => {
+      let _hexColor =  Number(item).toString(16)
+      if(_hexColor === "0") _hexColor+=_hexColor
+      strHex+=_hexColor
+    })
+    return strHex
+  }
   class JQueryForm {
     static defaultOptions = {
-      buttonName: 'commit'
+      buttonName: 'commit',
+      changeTxtFunc: function(){console.log('changeTxtFunc running');},
+      isCanChange: false
     }
     constructor(element,classOption){
       this.$el = $(element)      
@@ -26,32 +39,36 @@
         <div class="color-swatches"></div>
       `)
       this.$el.append($formDom)
-      console.log("$formDom.find('.color-swatches') is", this.$el.find('.color-swatches'))
-      this.$el.find('.color-swatches').on('click', function(){
-        console.log('color swatch this is', this)
-        self.changeColor(this)
+      this.$el.find('.color-swatches').on('click', function() {
+        if(this.isCanChange) return
+        self.changeTxtFunc(self.changeColor(this))
       })
     }
-    changeColor(){
-
+    changeColor(dom){
+      let currentColor = ''
+      const colors = ['#f9ed69', '#f08a5d', '#b83b5e', '#6a2c70']
+      const currentColorIndex = colors.indexOf(rgb2Hex($(dom).css('background-color')))
+      //非最后一个index+1 否则设置为index = 0
+      if(currentColorIndex < colors.length-1)  currentColor = colors[currentColorIndex+1]
+      else currentColor = colors[0]
+      $(dom).css('background-color', currentColor)
+      return currentColor
     }
   }
-
   //允许调用方法
-  var allowedMethods =['destroy'];
+  const allowedMethods =['destroy'];
   $.fn.jQueryForm = function(options){
     let value,args = Array.prototype.slice.call(arguments, 1)
 
     this.each(function() {
       const $this = $(this)
-      const classOption = Object.assign(typeof options === 'object' && options, JQueryForm.defaultOptions)
+      const classOption = Object.assign(JQueryForm.defaultOptions, typeof options === 'object' && options )
       let data =$this.data('jqeury.form')
       //没有对象就创建对象,将DOM元素和配置传入
       if(!data){
         $this.data('jqeury.form', (data = new JQueryForm(this, classOption)));
-        console.log('this data is', data)
       }
-      //如果是字符串，说明调用的方法
+      //options为字符串时表示再调用方法
       if(typeof options === 'string'){
         if(allowedMethods.includes(options)){
           //不存在对象 返回

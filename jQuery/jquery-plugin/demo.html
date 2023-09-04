@@ -18,13 +18,10 @@
       display: flex;
       flex-direction: column;
     }
-    .color-options{
-      item-self: flex-start;
-    }
     .color-swatches{
       width: 300px;
       height: 300px;
-      background-color: skyblue;
+      background-color: rgb(249, 237, 105);
     }
   </style>
   <title>jQuery</title>
@@ -40,10 +37,18 @@
         <span class="result-value">--</span>
       </div>
       <label for="">enable change color</label>
-      <input type="checkbox">
+      <input type="checkbox" id="color" name="isColor" value="true">
     </div>
     <script>
-      $('#jqueryForm').jQueryForm({querry:'234'})
+      function changeTxt(content){
+        $('.result-value').html(content)
+        $('.result-value').css('color', content)
+      }
+      console.log("$('input:radio:first')",$('input[type="checkbox"]').val());
+      $('input[type="checkbox"]').on('change', () => {
+        console.log('checkbox value', $('input[type="checkbox"]').val());
+      })
+      $('#jqueryForm').jQueryForm({changeTxtFunc:changeTxt})
     </script>
 </body>
 </html>
