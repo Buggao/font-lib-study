@@ -13,6 +13,19 @@
       justify-content: center;
       align-items: center;
     }
+    .form-container{
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+    }
+    .color-options{
+      item-self: flex-start;
+    }
+    .color-swatches{
+      width: 300px;
+      height: 300px;
+      background-color: skyblue;
+    }
   </style>
   <title>jQuery</title>
 </head>
@@ -20,8 +33,16 @@
     <h1>Jquery Demo</h1>
     <div>mian-page</div>
     <div id="jqueryForm"></div>
+    <div class="color-options">
+      <h2>get color</h2>
+      <div class="color-result">
+        <span>form color is:</span>
+        <span class="result-value">--</span>
+      </div>
+      <label for="">enable change color</label>
+      <input type="checkbox">
+    </div>
     <script>
-      console.log("$('#jqueryForm')",$('#jqueryForm'))
       $('#jqueryForm').jQueryForm({querry:'234'})
     </script>
 </body>
