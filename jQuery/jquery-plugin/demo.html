@@ -26,6 +26,9 @@
       height: 300px;
       background-color: rgb(249, 237, 105);
     }
+    .color-swatches:active {
+      border: 3px solid #7c7c7c;
+    }
   </style>
   <title>jQuery</title>
 </head>
@@ -43,17 +46,18 @@
     </div>
     <div id="jqueryForm"></div>
     <script>
+      $('.result-value').data('test', 123)
       function changeTxt(content){
         $('.result-value').html(content)
         $('.result-value').css('color', content)
       }
       $('input[type="checkbox"]').on('change', () => {
         let isChangeColor = $('input[type="checkbox"]').is(':checked')
-        $('#jqueryForm').jQueryForm('changeState', isChangeColor)
+        jqueryFormObj.couldChange = isChangeColor
       })
       $('#jqueryForm').jQueryForm({changeTxtFunc:changeTxt,onComplete:changeTxt})
+      const jqueryFormObj = $('#jqueryForm').data('jqeury.form') 
+      console.log('jqueryFormObj is', jqueryFormObj)
     </script>
-</body>
-</html>
 </body>
 </html>

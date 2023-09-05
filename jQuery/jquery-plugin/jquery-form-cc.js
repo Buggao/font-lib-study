@@ -57,12 +57,12 @@
       $(dom).css('background-color', currentColor)
       return currentColor
     }
-    changeState(state){
-      this.couldChange = state
+    setState(newState){
+      this.couldChange = newState
     }
   }
   //允许调用方法
-  const allowedMethods =['destroy','changeState'];
+  const allowedMethods =['destroy','setState'];
   $.fn.jQueryForm = function(options){
     let value,args = Array.prototype.slice.call(arguments, 1)
 
@@ -74,7 +74,7 @@
       if(!data){
         $this.data('jqeury.form', (data = new JQueryForm(this, classOption)));
       }
-      //options为字符串时表示再调用方法
+      //options为字符串时表示调用方法
       if(typeof options === 'string'){
         if(allowedMethods.includes(options)){
           //不存在对象 返回
