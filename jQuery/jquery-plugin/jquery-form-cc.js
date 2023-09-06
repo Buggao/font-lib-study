@@ -14,8 +14,9 @@
   class JQueryForm {
     static defaultOptions = {
       buttonName: 'commit',
+      onComplete: function(){console.log('JQueryForm load complete')},
       changeTxtFunc: function(){console.log('changeTxtFunc running');},
-      isCanChange: false
+      couldChange: false
     }
     constructor(element,classOption){
       this.$el = $(element)      
@@ -27,6 +28,7 @@
     init(){
       const self = this
       const $formDom = $(`
+        <div class="color-swatches"></div>
         <form class="form-container">
           <lable>name:</lable>
           <input>
@@ -36,11 +38,12 @@
           <input>
           <button>${this.buttonName}</button>  
         </form>
-        <div class="color-swatches"></div>
       `)
       this.$el.append($formDom)
+      this.onComplete(rgb2Hex(this.$el.find('.color-swatches').css('background-color')))
+      //绑定事件
       this.$el.find('.color-swatches').on('click', function() {
-        if(this.isCanChange) return
+        if(!self.couldChange) return
         self.changeTxtFunc(self.changeColor(this))
       })
     }
@@ -54,9 +57,12 @@
       $(dom).css('background-color', currentColor)
       return currentColor
     }
+    setState(newState){
+      this.couldChange = newState
+    }
   }
   //允许调用方法
-  const allowedMethods =['destroy'];
+  const allowedMethods =['destroy','setState'];
   $.fn.jQueryForm = function(options){
     let value,args = Array.prototype.slice.call(arguments, 1)
 
@@ -68,7 +74,7 @@
       if(!data){
         $this.data('jqeury.form', (data = new JQueryForm(this, classOption)));
       }
-      //options为字符串时表示再调用方法
+      //options为字符串时表示调用方法
       if(typeof options === 'string'){
         if(allowedMethods.includes(options)){
           //不存在对象 返回
