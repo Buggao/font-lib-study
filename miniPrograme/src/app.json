@@ -1,6 +1,4 @@
 {
-  "direction":"app.json 是整个小程序的配置文件，包含了页面路径，界面展示，插件，调试等一系列内容",
-  "/*.doc*/":"参考文档：https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html",
   "pages":[
     "pages/index/index",
     "pages/logs/logs"

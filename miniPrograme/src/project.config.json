@@ -1,5 +1,5 @@
 {
-    "description": "项目配置文件",
+    "description": "项目配置文件，优先级低于private。作为项目整体的配置",
     "setting": {
         "bundle": false,
         "userConfirmedBundleSwitch": false,
