@@ -13,6 +13,10 @@
       justify-content: center;
       align-items: center;
     }
+    #htmlContent{
+      border: 1px solid;
+      margin-bottom: 5px;
+    }
     .color-options{
       margin-bottom: 5px;
     }
@@ -20,6 +24,16 @@
       margin-bottom: 30px;
       display: flex;
       flex-direction: column;
+    }
+    .form-line{
+      margin-bottom: 5px;
+      padding: 3px 0;
+    }
+    .form-lable{
+      width:30px;
+    }
+    .form-input{
+      min-width: 30px;
     }
     .color-swatches{
       width: 300px;
@@ -33,16 +47,18 @@
   <title>jQuery</title>
 </head>
 <body>
-    <h1>Jquery Demo</h1>
-    <div>mian-page</div>
-    <div class="color-options">
-      <h2>get color</h2>
-      <div class="color-result">
-        <span>form color is:</span>
-        <span class="result-value">--</span>
+    <div id="htmlContent">
+      <h1>Jquery Demo</h1>
+      <div>mian-page</div>
+      <div class="color-options">
+        <h2>get color</h2>
+        <div class="color-result">
+          <span>form color is:</span>
+          <span class="result-value">--</span>
+        </div>
+        <label for="colorContorl">enable change color</label>
+        <input type="checkbox" id="colorContorl" name="isColor">
       </div>
-      <label for="colorContorl">enable change color</label>
-      <input type="checkbox" id="colorContorl" name="isColor">
     </div>
     <div id="jqueryForm"></div>
     <script>
