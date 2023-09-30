@@ -1,2 +1,4 @@
+//npm文件
+node_modules
 //小程序配置文件
 *.private.config.json
