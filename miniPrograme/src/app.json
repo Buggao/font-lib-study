@@ -1,10 +1,11 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/form/form",
+    "pages/list/list",
     "pages/clock/clock",
     "pages/logs/logs",
-    "pages/hoem/home"
+    "pages/hoem/home",
+    "pages/form/form"
   ],
   "window":{
     "navigationBarBackgroundColor": "#3a7645",
@@ -16,14 +17,14 @@
   },
   "tabBar": {
       "list": [{
-            "pagePath":"pages/logs/logs",
-            "text":"logs"
+            "pagePath":"pages/list/list",
+            "text":"list"
           },{
             "pagePath":"pages/index/index",
             "text":"index"
           },{
             "pagePath":"pages/clock/clock",
-            "text":"clock"
+            "text":"comments"
           }
     ]
   },

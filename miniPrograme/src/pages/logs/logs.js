@@ -3,7 +3,10 @@ const util = require('../../utils/util.js')
 
 Page({
   data: {
-    logs: []
+    logs: [],
+    cityWeather: '--'
+  },
+  showCat(){
   },
   onLoad() {
     this.setData({
@@ -13,6 +16,17 @@ Page({
           timeStamp: log
         }
       })
-    })
+    }) 
+    // wx.request({
+    //   url: 'https://www.apiopen.top/weatherApi',
+    //   method:'get',
+    //   data:{
+    //       city:"成都"
+    //   },
+    //   success: res => {
+    //       console.log('res is', res)
+    //       this.setData({})
+    //   }
+    // })
   }
 })

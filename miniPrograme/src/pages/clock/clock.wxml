@@ -1,23 +1,19 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar" bindtap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-      <open-data type="userNickName"></open-data>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+<view class="comment-page">
+    <view class="head-line">豆姐经典语录</view>
+    <view class="comment-main" wx:if="{{commentList.length>0}}">  
+        <view class="comment-list" wx:for="{{commentList}}" wx:key="id">
+            <view class="comment-item">
+                <text>{{index+1}}·</text>
+                <text class="item-content">{{item.content}}</text>
+                <view bind:tap="delCommentItem" data-index="{{index}}">
+                    <icon type="clear" size="26"></icon>
+                </view>
+            </view>
+        </view>
+        <view class="comment-total">共<text>{{commentList.length}}</text>条语录</view>
+    </view> 
+    <view class="comment-input">
+            <input class="input-frame" type="text" placeholder="请输入语录" model:value="{{inputValue}}" bind:input="commentInput"/>
+            <button type="primary" class="input-button" bind:tap="commiteComment">添加</button>
+    </view>
 </view>

@@ -35,4 +35,18 @@
     <text decode>特殊字符转移等&lt;&nbsp;&quot;&amp;&apos;&apos;&gt;（view组件是不支持的）</text>
     <view>rich-text组件，富文本，会将html字符串内容作为html标签渲染出来</view>
     <rich-text></rich-text>
+    <view>
+        <input type="text" placeholder="请输入城市名"/>
+        <text>天气情况：{{cityWeather}}</text>    
+    </view>
+    <view>
+        <button bind:tap="showCat">show cat</button>
+        <view>
+            <text>name</text>
+            <text>{{catName}}</text>
+            <text>avatar</text>
+            <text>{{catavatarUrl}}</text>
+            <image src="{{catavatarUrl}}" mode=""/>
+        </view>
+    </view>
 </view>
