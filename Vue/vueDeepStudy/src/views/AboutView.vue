@@ -1,15 +1,19 @@
-<template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
-</template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
+<script>
+  import FancyItem from '.././components/fancyItem.vue'
+</script>
+
+<template>
+  <h1>about view</h1>
+  <FancyItem>
+    <template v-slot:header>
+      <p>header</p>
+      <div> what fuck</div>
+    </template>
+    <p>default content</p>
+    <template v-slot:footer>
+      <p>footer</p>
+      <div> what fuck</div>
+    </template>
+  </FancyItem>
+</template>
