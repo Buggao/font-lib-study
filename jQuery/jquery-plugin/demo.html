@@ -61,6 +61,9 @@
       </div>
     </div>
     <div id="jqueryForm"></div>
+    <button class="testtext">text</button>
+    <span class="here-demo">demo</span>
+    <span class="none-demo" data-charge-station-name=""></span>
     <script>
       $('.result-value').data('test', 123)
       function changeTxt(content){
@@ -74,6 +77,14 @@
       $('#jqueryForm').jQueryForm({changeTxtFunc:changeTxt,onComplete:changeTxt})
       const jqueryFormObj = $('#jqueryForm').data('jqeury.form') 
       console.log('jqueryFormObj is', jqueryFormObj)
+      $(".testtext").click(function(){
+        var noneText = $(".none-demo").text()
+        var textattr = $('.none-demo').attr('data-charge-station-name') 
+        console.log('here-demo is',$(".here-demo").text())
+        $(".none-demo").text('')
+        console.log('none demo is',noneText,noneText*1, 'textattr', textattr)
+        console.dir(noneText)
+      });
     </script>
 </body>
 </html>
