@@ -10,7 +10,7 @@
 
 <script>
   props:{
-    phoneInfo: Object,
+    phoneInfo: Object;
     zipCode: String
   }
 </script>
@@ -20,6 +20,6 @@
   display: flex;
   flex-direction:row;
   justify-content: center;
-  align-item: center;
+  align-items: center;
 }
 </style>

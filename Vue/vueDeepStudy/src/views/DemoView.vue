@@ -1,40 +1,41 @@
 <template>
-    <div class="home-page">
-        <h1 :content="objVeriable">demo view</h1>
-        <div :bind-value="bindValue">bind string</div>
-        <div :value="bindNull">bind null</div>
-        <div :value="bindObj">bind object</div>
-        <input v-bind="inputObj">
-        <br/><br/>
-        <button @click="changeStatus">change status</button>
-        <div :class="{ 'active-status': divActive}" class="status-block">active</div>
+    <div class="demopage">
+        <nav class="nav-bar">
+            <RouterLink to="/demo/class">类</RouterLink>
+            <RouterLink to="/demo/style">样式</RouterLink>
+            <RouterLink to="/demo/list">条件渲染</RouterLink>
+        </nav>
+        <RouterView/>
     </div>
 </template>
   
 <script setup>
-import {ref, computed } from 'vue'
-let bindValue = 'bind String'
-let bindNull = ''
-let bindObj = {a:'a', b:'b'}
-let inputObj = {
-    name:"user-name", 
-    type: 'text', 
-    placeholder:'please input your name'
-    }
-let divActive = ref(false)
-function changeStatus(){
-    console.log('changeStatus is running')
-    divActive.value = !divActive.value
-}
+import { RouterLink, RouterView } from 'vue-router'
 </script>
   
 <style>
-.home-page {
+.nav-bar{
+    width: 30%;
+    display: flex;
     flex-direction: column;
+}
+.demopage{
+    display: flex;
+}
+.home-page {
+    display: flex;
+    padding: 20px 0;
+    align-items: center;
+    flex-direction: column;
+} 
+.gold-text {
+    font-weight: 700;
+    color: #b9990b;
 }
 .status-block{
     width: 120px;
     height: 30px;
     margin-top: 15px;
+    text-align: center;
 }
 </style>
