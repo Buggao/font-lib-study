@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import styleBind from '../views/template/stylebind.vue'
 import classBind from '../views/template/classbind.vue'
 import listRending from '../views/template/listRending.vue'
+import conditional from '../views/template/conditional.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,6 +29,7 @@ const router = createRouter({
         { path: 'class', name: 'class', component: classBind },
         { path: 'style', name: 'style', component: styleBind },
         { path: 'list', name: 'list', component: listRending },
+        { path: 'conditional', name: 'conditional', component: conditional },
       ]
     }
   ]

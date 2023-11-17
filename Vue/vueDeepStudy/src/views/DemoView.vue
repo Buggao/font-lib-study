@@ -3,7 +3,8 @@
         <nav class="nav-bar">
             <RouterLink to="/demo/class">类</RouterLink>
             <RouterLink to="/demo/style">样式</RouterLink>
-            <RouterLink to="/demo/list">条件渲染</RouterLink>
+            <RouterLink to="/demo/list">列表渲染</RouterLink>
+            <RouterLink to="/demo/conditional">条件渲染</RouterLink>
         </nav>
         <RouterView/>
     </div>
