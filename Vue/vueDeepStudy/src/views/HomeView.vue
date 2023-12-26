@@ -28,7 +28,7 @@ const newBookName = ref(void(0))
 const bookNumbers = ref(void(0))
 const author = reactive(  
   {
-    name: 'Nini Gao',
+    name: 'Nini Gao', 
     books: [
       '假如给我散甜光鸣',
       '妮妮与海',

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import TodoItem from './TodoItem.vue';
 const props = defineProps({
   todoList: Array,

@@ -1,15 +1,21 @@
-<script setup>
-import {ref, watch} from 'vue'
+<script setup lang="ts">
+import {ref, watch,computed} from 'vue'
   const emit = defineEmits(['delAllDoneItem','selectAllItem'])
-  const props = defineProps({
-    todoList: Array
-  })
-  const isDoneTotal = props.todoList.filter(item => item.isDone).length
+  interface TodoItem {
+    id: number,
+    content: string,
+    isDone: boolean
+  }
+  const props = defineProps<{
+    todoList: TodoItem[]
+  }>()
+  const isDoneTotal = computed( _ => props.todoList.filter(item => item.isDone).length)
   const selectAll = ref(false) 
-  watch(props.todoList, ()=> {
-    isDoneTotal === props.todoList.length ? selectAll.value = true : selectAll.value = false
-  }, )
-
+  watch(
+    props.todoList,
+    ()=> {
+      isDoneTotal === props.todoList.length ? selectAll.value = true : selectAll.value = false
+    })
 </script>
 
 <template>

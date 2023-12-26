@@ -5,6 +5,7 @@
             <RouterLink to="/demo/style">样式</RouterLink>
             <RouterLink to="/demo/list">列表渲染</RouterLink>
             <RouterLink to="/demo/conditional">条件渲染</RouterLink>
+            <RouterLink to="/demo/nextTick">nextTick</RouterLink>
         </nav>
         <RouterView/>
     </div>

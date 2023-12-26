@@ -1,23 +1,56 @@
 <template>
   <div class="fancy-item">
-    <div class="header">
-      <slot name="header"></slot>
+    <h2>
+      {{ props.componentName.value }}
+    </h2>
+    <div>Mouse position is at: {{ x }}, {{ y }}</div>
+    <div v-bind="$attrs">
+      {{ props.componentContent }}
+      <span>childrenSelect</span>
+      <!-- {{ childrenSelect }} -->
+      <span>attribute: {{ $attrs }}</span>
     </div>
-    <div class="content">
-      <slot/>
+    <div class="choose-box">
+      <span v-for="(item,index) in ['S', 'M', 'L']" :class="['size-box', activeIndex == index ? 'active': '']" @click="checkSize(index, $event)">{{item}}</span>
     </div>
-    <div class="footer">
-      <slot name="footer"></slot>
-    </div>
+    <button @click="$emit('selectSize', activeSize)">submit size</button>
   </div>
 </template>
+
+<script setup>
+  import {ref} from 'vue'
+  import { useMouse } from '../utils/mouse'
+  defineOptions({
+    inheritAttrs: false
+  })
+  const props = defineProps(
+    {
+      componentName: Object,
+      componentContent: {
+        type: [Number, String]  
+      },
+      selectSize: String,
+      modelValue:Object
+    }
+  )
+  const emits = defineEmits(['selectSize', 'update:modelValue'])
+  let activeSize = void(0)
+  let activeIndex = ref(-1) 
+  function checkSize(index, event){
+    console.log('selse is running', event.target.innerText)
+    activeSize = event.target.innerText
+    activeIndex.value = index
+  }
+  const {x, y} = useMouse()
+</script>
 
 <style>
   .fancy-item{
     width: 400px;
-    height: 300px;
+    padding: 20px;
     border:1px solide #ccc;
     display: flex;
+    flex-direction: column;
     justify-content:center;
     align-items:center;
   }
@@ -34,6 +67,6 @@
     padding-right:10px;
     border:1px solide #ccc;
     height:60px;
-    align-slef: flex-end;
+    align-self: flex-end;
   }
 </style>
