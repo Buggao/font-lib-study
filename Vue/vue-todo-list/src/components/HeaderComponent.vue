@@ -5,43 +5,30 @@ const emit = defineEmits(['addItem'])
 const handleClick = (param,param1) => {(
     console.log(`${param}th box is clicked`,param1)
 )}
-const isGolden = ref(false)
-const demoObj = reactive({name:'ton',age:23})
-function addProp(){
-  Object.assign(demoObj,{company:'dance'})
+const testObj = ref({name:'isGolden',age:1})
+let demoObj = reactive({name:'ton',age:23})
+function setData(){
+  demoObj = testObj
+  testObj.value = {name:'isGolden',age:2}
+  // Object.assign(demoObj,{company:'dance'})
 }
 </script>
 
 <template>
   <h1 class="logo">To Do List</h1>
-  <div class="container">
-    <div v-for="item of [10,20,30]" class="box" :class="`box${item}`"  @click="handleClick(item,'yes')"></div>
-  </div>
   <hr/>
   <input 
     v-model=newTodo
     type="text" placeholder="请输入新的To do项，回车新增" 
     class="todo-input" @keydown.enter="($emit('addItem',newTodo), newTodo='')">
-  <button @click="addProp">greet</button>
+  <button @click="setData">setData</button>
+  <button @click="Object.assign(demoObj,{company:'dance'})">changeData</button>
   <div v-for="item in demoObj">{{item}}</div>
+  <div v-for="item in testObj">{{item}}</div>
 </template>
 
 
 <style scoped>
-.box {
-  width: 100px;
-  height: 100px;
-  border: 1px solid #42b883aa;
-}
-.box:first-child{
-  background: #33228899;
-}
-.box:nth-child(2){
-  background: #aa99bb;
-}
-.box:nth-child(3){
-  background: #33aabb;
-}
 .logo {
   width: 640px;
   padding: 1.5em;
