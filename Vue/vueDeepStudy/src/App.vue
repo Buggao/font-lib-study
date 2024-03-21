@@ -1,27 +1,11 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+<script setup>
+import SonComponent from './components/SonComponent.vue';
+const receiveMsg = (msg) => {console.log(msg)}
 </script>
 
 <template>
-  <div>
-    <ul>
-      <li>demo</li>
-    </ul>
-  </div>
-  <HelloWorld />
+  <SonComponent msg="Vite + Vue" @who-am-i="receiveMsg"/>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
 </style>

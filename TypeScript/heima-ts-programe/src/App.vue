@@ -1,13 +1,19 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
 const app = 'App.vue'
+
+const receiveMessage:(msg:string) => void = msg => {
+  console.log(msg)
+}
 </script>
 
 <template>
-  <h1>
-    {{ app }}
-  </h1>
-  <HelloWorld msg="vue3 + vite + ts"/>
+  <div class="logo">
+    <h1 class="vue">
+      {{ app }}
+    </h1>
+    <HelloWorld  msg="vue3 + vite + ts" @say-my-name="receiveMessage"/>
+  </div>
 </template>
 
 <style scoped>
