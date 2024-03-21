@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
+const app = 'App.vue'
 </script>
 
 <template>
-  <div>
-    <ul>
-      <li>demo</li>
-    </ul>
-  </div>
-  <HelloWorld />
+  <h1>
+    {{ app }}
+  </h1>
+  <HelloWorld msg="vue3 + vite + ts"/>
 </template>
 
 <style scoped>

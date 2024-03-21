@@ -1,34 +1,55 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch, reactive } from 'vue'
 
-defineProps<{ msg: string }>()
+const question = ref('')
+const answer = ref('Questions usually contain a question mark. ;-)')
+const loading = ref(false)
 
-const count = ref(0)
+// 可以直接侦听一个 ref
+watch(question, async (newQuestion) => {
+  if (newQuestion.includes('?')) {
+    loading.value = true
+    answer.value = 'Thinking...'
+    try {
+      const res = await fetch('https://yesno.wtf/api')
+      answer.value = (await res.json()).answer
+    } catch (error) {
+      answer.value = 'Error! Could not reach the API. ' + error
+    } finally {
+      loading.value = false
+    }
+  }
+})
+// const name = ref('ton')
+const array = ref([1,2,3,4])
+watch(array, (newArray, oldArray) => {
+  console.log('new array is', newArray,'old Array is', oldArray)
+})
+
+  const demoObj = reactive({name:'Ton', age:23})
+  watch(() => demoObj.name, (newValue) => {
+    console.log('new demoObj.name is', newValue)
+  },{immediate: true })
+
+
+
+
+  function pushArray(){
+    array.value.push(7)
+  }
+  function changeName(){
+    // name.value = 'Gao Ton'
+  }
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
-
-  <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
-  </div>
-
   <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
-    >, the official Vue + Vite starter
+    Ask a yes/no question:
+    <input v-model="question" :disabled="loading" />
   </p>
-  <p>
-    Install
-    <a href="https://github.com/vuejs/language-tools" target="_blank">Volar</a>
-    in your IDE for a better DX
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
+  <p>{{ answer }}</p>
+  <button @click="pushArray">push array</button>
+  <button @click="changeName">change name</button>
 </template>
 
 <style scoped>

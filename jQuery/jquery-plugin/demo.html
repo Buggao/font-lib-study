@@ -7,84 +7,25 @@
   <script src="../jquery.min.js"></script>  
   <script src="./jquery-form-cc.js"></script>
   <style>
-    body {
-      display: flex;
-      flex-flow: column nowrap;
-      justify-content: center;
-      align-items: center;
+    .box {
+      width:100%;
+      height:500px;
     }
-    #htmlContent{
-      border: 1px solid;
-      margin-bottom: 5px;
-    }
-    .color-options{
-      margin-bottom: 5px;
-    }
-    .form-container{
-      margin-bottom: 30px;
-      display: flex;
-      flex-direction: column;
-    }
-    .form-line{
-      margin-bottom: 5px;
-      padding: 3px 0;
-    }
-    .form-lable{
-      width:30px;
-    }
-    .form-input{
-      min-width: 30px;
-    }
-    .color-swatches{
-      width: 300px;
-      height: 300px;
-      background-color: rgb(249, 237, 105);
-    }
-    .color-swatches:active {
-      border: 3px solid #7c7c7c;
+    .bgcontainer1{
+      background: url('../beinali400.jpg');
     }
   </style>
   <title>jQuery</title>
 </head>
+<div class="box bgcontainer1">bgcontainer1</div>
+<div class="bgcontainer2"></div>
+<button class="btn">change bg</button>
 <body>
-    <div id="htmlContent">
-      <h1>Jquery Demo</h1>
-      <div>mian-page</div>
-      <div class="color-options">
-        <h2>get color</h2>
-        <div class="color-result">
-          <span>form color is:</span>
-          <span class="result-value">--</span>
-        </div>
-        <label for="colorContorl">enable change color</label>
-        <input type="checkbox" id="colorContorl" name="isColor">
-      </div>
-    </div>
-    <div id="jqueryForm"></div>
-    <button class="testtext">text</button>
-    <span class="here-demo">demo</span>
-    <span class="none-demo" data-charge-station-name=""></span>
-    <script>
-      $('.result-value').data('test', 123)
-      function changeTxt(content){
-        $('.result-value').html(content)
-        $('.result-value').css('color', content)
-      }
-      $('input[type="checkbox"]').on('change', () => {
-        let isChangeColor = $('input[type="checkbox"]').is(':checked')
-        jqueryFormObj.couldChange = isChangeColor
-      })
-      $('#jqueryForm').jQueryForm({changeTxtFunc:changeTxt,onComplete:changeTxt})
-      const jqueryFormObj = $('#jqueryForm').data('jqeury.form') 
-      console.log('jqueryFormObj is', jqueryFormObj)
-      $(".testtext").click(function(){
-        var noneText = $(".none-demo").text()
-        var textattr = $('.none-demo').attr('data-charge-station-name') 
-        console.log('here-demo is',$(".here-demo").text())
-        $(".none-demo").text('')
-        console.log('none demo is',noneText,noneText*1, 'textattr', textattr)
-        console.dir(noneText)
-      });
-    </script>
+  <script>
+    $('.btn').on('click', function(){
+      var newBg = `<div class="box" style="background:url('../beinali400.jpg')"></div>`
+      $('.bgcontainer2').html(newBg)
+    })
+  </script>
 </body>
 </html>
