@@ -22,3 +22,5 @@ npm install sass sass-loader -d 安装sass预处理包并添加配置  test: /\.
 # 完善webpack 配置
 npm install webpack-dev-server -D 引入webpack自启动服务，进行webpack配置时需要主义版本，版本不同，配置内容也不同。
 
+添加了 cross-env 用来在Windows下指定环境变量 以及 vue的环境变量设置，
+

@@ -2,20 +2,24 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 // 最新的 vue-loader 中，VueLoaderPlugin 插件的位置有所改变
 const { VueLoaderPlugin } = require("vue-loader/dist/index");
-const { DefinePlugin } = require('webpack')
+const { DefinePlugin } = require("webpack");
 
 //webpack server 端口
-const port = "8899"
+const port = "8899";
 
 module.exports = {
-  mode: "development", // 环境模式
+  mode: process.env.MODE === "development" ? "development" : "production", // 环境模式
   entry: path.resolve(__dirname, "./src/main.js"), // 打包入口
+  //错误log
+  stats: {
+    errorDetails: "auto",
+  },
   output: {
     path: path.resolve(__dirname, "dist"), // 打包出口
     filename: "js/[name].js", // 打包完的静态资源文件名
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
   },
   module: {
     rules: [
@@ -47,9 +51,10 @@ module.exports = {
     new VueLoaderPlugin(),
     // vue的默认值设置
     new DefinePlugin({
-        __VUE_PROD_DEVTOOLS__: true,   //开发者工具支持
-        __VUE_OPTIONS_API__: false,    //选项式 API 支持,第三方库若依赖选项式api，则可能    
-        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__ : true, //生产环境构建下激活 (hydration) 不匹配的详细警告
+      // vue环境变量修改
+      __VUE_PROD_DEVTOOLS__: true, //开发者工具支持
+      __VUE_OPTIONS_API__: false, //选项式 API 支持,第三方库若依赖选项式api，则可能
+      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: true, //生产环境构建下激活 (hydration) 不匹配的详细警告
     }),
   ],
   devServer: {
@@ -57,10 +62,13 @@ module.exports = {
     port,
     compress: true,
     static: {
-      directory: path.join(__dirname, './'),
+      directory: path.join(__dirname, "./"),
     },
     headers: {
-        'Access-Control-Allow-Origin': '*'
-    }
-  }
+      "Access-Control-Allow-Origin": "*",
+    },
+  },
+  performance: {
+    hints: false,
+  },
 };

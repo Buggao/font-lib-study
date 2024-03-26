@@ -6,14 +6,19 @@ const testFunction = () => {
 </script>
 
 <template>
-    <div class="main-app">
-        <nav>nav</nav>
+    <main class="main-app">
+        <nav>
+            <ul>
+                <li><a href="#/">首页</a></li>
+                <li><a href="#/subvue">vite-vue3-ts</a></li></ul>
+        </nav>
         <aside>aside</aside>
-        <main>main
-            <div id="sub-app"></div>
-        </main>
-
-    </div>
+        <section>main
+            <main id="subapp-viewport">
+                <router-view></router-view>
+            </main>
+        </section>
+    </main>
 </template>
 
 <style lang="scss" scoped>
@@ -28,6 +33,20 @@ const testFunction = () => {
     nav{
         grid-area: nav;
         background-color: #fce38a;
+        ul {
+            display: flex;
+            gap: 10px;
+            >li {
+                color: #aaa;
+                font-size: 18px;
+                font-weight: 400;
+                cursor: pointer;
+                &:hover {
+                    font-size: 1.2em;
+                  color: #444;
+                }
+              }
+        }
     }
     aside {
         grid-area: aside;
