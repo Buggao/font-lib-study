@@ -2,20 +2,19 @@
 import { ref } from 'vue'
 import SonComponent from './components/SonComponent.vue';
 const receiveMsg = (msg) => {console.log(msg)}
-const data = ref({number:1})
-const changeData = (changeType) => {
-  console.log('changeType',changeType)
-  if(changeType == 'add') {
-    data.value.number = data.value.number + 0.1 
-  } else if(changeType == 'sub') {
-    data.value.number = data.value.number - 0.1 
+const listData = ref([{id:1, number:1},{id:2, number:1},{id:3, number:1},{id:4, number:1}])
+const changeData = (changeType,index) => {
+  console.log('changeType',changeType,index)
+  if(changeType == 'add'){
+    listData.value[index].number += 1
+  }else if(changeType == 'sub'){
+    listData.value[index].number -= 1
   }
 }
 </script>
 
 <template>
-  <p>{{ data.number }}</p>
-  <SonComponent :numberData="data" @changeData="changeData" />
+  <SonComponent :listData="listData" @changeData="changeData" />
 </template>
 
 <style scoped>
