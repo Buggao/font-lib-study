@@ -1,23 +1,13 @@
-<script setup>
-const testFunction = () => {
-    console.log('滚')
-}
-
-</script>
-
 <template>
     <main class="main-app">
         <nav>
             <ul>
                 <router-link to="/home">回首页 </router-link>
-                <router-link to="/vitevue">vite vue</router-link>
+                <router-link to="/vite">vite vue</router-link>
             </ul>
         </nav>
-        <section>
-            <span>main</span>
-            <main id="subapp-viewport">
-                <router-view></router-view>
-            </main>
+        <section class="main">
+            <router-view></router-view>
         </section>
     </main>
 </template>
@@ -29,7 +19,7 @@ const testFunction = () => {
     grid-template-areas: 
         'nav nav'
         'main main';
-    grid-template-columns: 12% 1fr;
+    grid-template-columns: 1fr;
     grid-template-rows: 8% 1fr;
     nav{
         grid-area: nav;
@@ -49,13 +39,12 @@ const testFunction = () => {
               }
         }
     }
-    aside {
-        grid-area: aside;
-        background-color: #eaffd0;
-    }
-    main {
+    section.main {
         grid-area: main;
         background-color: #95e1d3;
+        #subapp-viewport {
+            height: 100%;
+        }
     }
 }
 </style>

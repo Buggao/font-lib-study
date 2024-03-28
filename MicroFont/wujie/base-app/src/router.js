@@ -7,15 +7,15 @@ const routes = [
         component: () => import("../src/views/Home.vue"),
     }, 
     {
-        path: '/vitevue',
-        name: 'vitevue',
+        path: '/vite',
+        name: 'vite',
         component: () => import("../src/views/ViteVue.vue"),
     }
 ]
 
 const router = createRouter({
     history: createWebHistory(),
-    routers: routes
+    routes: routes
 })
 
 export default router
