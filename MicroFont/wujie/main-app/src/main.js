@@ -12,7 +12,7 @@ setupApp({
     url: '//localhost:5173/',
     exec: true,
     sync: true,
-    alive: true,
+    alive: false,
     ...lifecycles
 })
 
